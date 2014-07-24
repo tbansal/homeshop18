@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+
+
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{taskController.retrieveTasks}" />
+	</f:metadata>
+	<ui:param name="pageTitle" value="My Tasks" />
+	<ui:define name="content">
+		<h:commandButton action="#{processController.startProcess}"
+			value="Start Process" rendered="#{request.isUserInRole('frontdesk')}" />
+		<p:tabView>
+
+			<p:tab title="Dashboard">
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:panelGroup rendered="#{empty taskController.tasks}">
+						<i>User #{request.remoteUser} has no pending cases.</i>
+					</h:panelGroup>
+					<h:dataTable id="userTasksTable" border="1"
+						rendered="#{not empty taskController.tasks}"
+						value="#{taskController.tasks}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id" />
+							</f:facet>
+							<h:outputText id="taskId" value="#{_item.id}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText id="taskName" value="#{_item.name}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Process instance ID" />
+							</f:facet>
+							<h:outputText id="processInstanceId"
+								value="#{_item.processInstanceId}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Approval" />
+							</f:facet>
+							<h:link outcome="/protected/approveTask">
+								<f:param name="taskId" value="#{_item.id}" />
+								<f:param name="user" value="#{request.remoteUser}" />
+								<f:param name="processId" value="#{_item.processInstanceId}" />
+								<h:outputText id="approve" value="Approve" />
+							</h:link>
+						</h:column>
+					</h:dataTable>
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Case List" closable="true">
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:dataTable id="userTasksTable1" border="1"
+						rendered="#{not empty taskController.tasks}"
+						value="#{taskController.tasks}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id" />
+							</f:facet>
+							<h:outputText id="taskId" value="#{_item.id}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText id="taskName" value="#{_item.name}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Process instance ID" />
+							</f:facet>
+							<h:outputText id="processInstanceId"
+								value="#{_item.processInstanceId}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Approval" />
+							</f:facet>
+							<h:link outcome="/protected/approveTask">
+								<f:param name="taskId" value="#{_item.id}" />
+								<f:param name="user" value="#{request.remoteUser}" />
+								<h:outputText id="approve" value="Approve" />
+							</h:link>
+						</h:column>
+					</h:dataTable>
+				</h:panelGrid>
+			</p:tab>
+		</p:tabView>
+
+
+
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,5 @@
+<jboss-web>
+	<context-root>casepanel</context-root>
+	<security-domain>java:/jaas/DBAuthTest</security-domain>
+</jboss-web>
+

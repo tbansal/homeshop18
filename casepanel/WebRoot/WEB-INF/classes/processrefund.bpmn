@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:tns="http://www.jboss.org/drools" xmlns="http://www.jboss.org/drools" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" id="Definition" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
+  <bpmn2:itemDefinition id="_recipientItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_rewardItem" structureRef="Integer"/>
+  <bpmn2:itemDefinition id="_pmCommentItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_hrCommentItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_amount" structureRef="Integer"/>
+  <bpmn2:process id="processrefundhs18" tns:version="1.0" tns:packageName="org.jbpm.examples" tns:adHoc="false" name="Process Refund" isExecutable="true" processType="Private">
+    <bpmn2:property id="recipient" itemSubjectRef="_recipientItem"/>
+    <bpmn2:property id="reward" itemSubjectRef="_rewardItem"/>
+    <bpmn2:property id="pmComment" itemSubjectRef="_pmCommentItem"/>
+    <bpmn2:property id="hrComment" itemSubjectRef="_hrCommentItem"/>
+    <bpmn2:property id="amount" itemSubjectRef="_amount"/>
+    <bpmn2:startEvent id="_46119376-06E0-4D20-81C1-522970D04BF1" name="Start">
+      <bpmn2:outgoing>_46119376-06E0-4D20-81C1-522970D04BF1-_1B8DCDC4-A0A5-44ED-8989-160EF4076E22</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="_1B8DCDC4-A0A5-44ED-8989-160EF4076E22" name="Arrange Reverse Pickup">
+      <bpmn2:incoming>_46119376-06E0-4D20-81C1-522970D04BF1-_1B8DCDC4-A0A5-44ED-8989-160EF4076E22</bpmn2:incoming>
+      <bpmn2:outgoing>_1B8DCDC4-A0A5-44ED-8989-160EF4076E22-_D601DEF2-307C-472A-84F7-6AB28FEE806F</bpmn2:outgoing>
+      <bpmn2:potentialOwner id="PotentialOwner_1">
+        <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_1">
+          <bpmn2:formalExpression id="FormalExpression_9">parthog
+					</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="_D601DEF2-307C-472A-84F7-6AB28FEE806F" name="Arrange Refund">
+      <bpmn2:incoming>_1B8DCDC4-A0A5-44ED-8989-160EF4076E22-_D601DEF2-307C-472A-84F7-6AB28FEE806F</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_4">
+        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="_amount" name="refundamount"/>
+        <bpmn2:inputSet id="InputSet_15" name="Input Set 15"/>
+        <bpmn2:outputSet id="_OutputSet_7" name="Output Set 7">
+          <bpmn2:dataOutputRefs>DataOutput_1</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1">
+        <bpmn2:sourceRef>DataOutput_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>amount</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="PotentialOwner_2">
+        <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_2">
+          <bpmn2:formalExpression id="FormalExpression_18">NikhilD
+					</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="_46119376-06E0-4D20-81C1-522970D04BF1-_1B8DCDC4-A0A5-44ED-8989-160EF4076E22" tns:priority="1" name="" sourceRef="_46119376-06E0-4D20-81C1-522970D04BF1" targetRef="_1B8DCDC4-A0A5-44ED-8989-160EF4076E22"/>
+    <bpmn2:sequenceFlow id="_1B8DCDC4-A0A5-44ED-8989-160EF4076E22-_D601DEF2-307C-472A-84F7-6AB28FEE806F" tns:priority="1" name="" sourceRef="_1B8DCDC4-A0A5-44ED-8989-160EF4076E22" targetRef="_D601DEF2-307C-472A-84F7-6AB28FEE806F"/>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_1" name="Send for Approval" gatewayDirection="Diverging" default="SequenceFlow_8">
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" tns:priority="1" name="" sourceRef="_D601DEF2-307C-472A-84F7-6AB28FEE806F" targetRef="ExclusiveGateway_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_5" tns:priority="1" name="" sourceRef="ExclusiveGateway_1" targetRef="_jbpm-unique-1">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_16">amount>5000</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:userTask id="_jbpm-unique-1" name="Approve Amount">
+      <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_1">
+        <bpmn2:dataInput id="DataInput_8" name="TaskName"/>
+        <bpmn2:inputSet id="InputSet_1">
+          <bpmn2:dataInputRefs>DataInput_8</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_8">
+        <bpmn2:targetRef>DataInput_8</bpmn2:targetRef>
+        <bpmn2:assignment id="Assignment_8">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_19">Approveamount</bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_17">DataInput_8</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:potentialOwner id="PotentialOwner_3">
+        <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_3">
+          <bpmn2:formalExpression id="FormalExpression_32">Lalit</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_8" tns:priority="1" name="" sourceRef="ExclusiveGateway_1" targetRef="ExclusiveGateway_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_9" tns:priority="1" name="" sourceRef="_jbpm-unique-1" targetRef="ExclusiveGateway_2"/>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_2" name="Stop gate" gatewayDirection="Converging">
+      <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_9</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_10" tns:priority="1" name="" sourceRef="ExclusiveGateway_2" targetRef="ScriptTask_1"/>
+    <bpmn2:scriptTask id="ScriptTask_1" name="Script Task 1">
+      <bpmn2:incoming>SequenceFlow_10</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;process finisheds&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:endEvent id="_EDB4C306-7EE4-4DB3-92B7-3B404B8A5646" name="End">
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" tns:priority="1" name="" sourceRef="ScriptTask_1" targetRef="_EDB4C306-7EE4-4DB3-92B7-3B404B8A5646"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process_1" bpmnElement="processrefundhs18">
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="_46119376-06E0-4D20-81C1-522970D04BF1">
+        <dc:Bounds height="48.0" width="48.0" x="64.0" y="220.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="_EDB4C306-7EE4-4DB3-92B7-3B404B8A5646">
+        <dc:Bounds height="48.0" width="48.0" x="715.0" y="460.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_1" bpmnElement="_1B8DCDC4-A0A5-44ED-8989-160EF4076E22">
+        <dc:Bounds height="48.0" width="144.0" x="18.0" y="52.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_2" bpmnElement="_D601DEF2-307C-472A-84F7-6AB28FEE806F">
+        <dc:Bounds height="53.0" width="133.0" x="225.0" y="49.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_2" bpmnElement="ExclusiveGateway_1" isMarkerVisible="true">
+        <dc:Bounds height="81.0" width="81.0" x="440.0" y="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_3" bpmnElement="_jbpm-unique-1">
+        <dc:Bounds height="48.0" width="100.0" x="641.0" y="47.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="ExclusiveGateway_2" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="666.0" y="200.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_1" bpmnElement="ScriptTask_1">
+        <dc:Bounds height="91.0" width="106.0" x="457.0" y="355.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="_46119376-06E0-4D20-81C1-522970D04BF1-_1B8DCDC4-A0A5-44ED-8989-160EF4076E22" sourceElement="BPMNShape_StartEvent_1" targetElement="BPMNShape_UserTask_1">
+        <di:waypoint xsi:type="dc:Point" x="88.0" y="244.0"/>
+        <di:waypoint xsi:type="dc:Point" x="90.0" y="76.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="_1B8DCDC4-A0A5-44ED-8989-160EF4076E22-_D601DEF2-307C-472A-84F7-6AB28FEE806F" sourceElement="BPMNShape_UserTask_1" targetElement="BPMNShape_UserTask_2">
+        <di:waypoint xsi:type="dc:Point" x="90.0" y="76.0"/>
+        <di:waypoint xsi:type="dc:Point" x="291.0" y="75.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_UserTask_2" targetElement="BPMNShape_ExclusiveGateway_2">
+        <di:waypoint xsi:type="dc:Point" x="358.0" y="75.0"/>
+        <di:waypoint xsi:type="dc:Point" x="394.0" y="75.0"/>
+        <di:waypoint xsi:type="dc:Point" x="394.0" y="70.0"/>
+        <di:waypoint xsi:type="dc:Point" x="440.0" y="70.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_11" bpmnElement="SequenceFlow_5" sourceElement="BPMNShape_ExclusiveGateway_2" targetElement="BPMNShape_UserTask_3">
+        <di:waypoint xsi:type="dc:Point" x="521.0" y="70.0"/>
+        <di:waypoint xsi:type="dc:Point" x="575.0" y="70.0"/>
+        <di:waypoint xsi:type="dc:Point" x="575.0" y="71.0"/>
+        <di:waypoint xsi:type="dc:Point" x="641.0" y="71.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="SequenceFlow_8" sourceElement="BPMNShape_ExclusiveGateway_2" targetElement="BPMNShape_ExclusiveGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="480.0" y="111.0"/>
+        <di:waypoint xsi:type="dc:Point" x="480.0" y="225.0"/>
+        <di:waypoint xsi:type="dc:Point" x="666.0" y="225.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="SequenceFlow_9" sourceElement="BPMNShape_UserTask_3" targetElement="BPMNShape_ExclusiveGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="691.0" y="95.0"/>
+        <di:waypoint xsi:type="dc:Point" x="691.0" y="142.0"/>
+        <di:waypoint xsi:type="dc:Point" x="691.0" y="142.0"/>
+        <di:waypoint xsi:type="dc:Point" x="691.0" y="200.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_12" bpmnElement="SequenceFlow_10" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_ScriptTask_1">
+        <di:waypoint xsi:type="dc:Point" x="691.0" y="251.0"/>
+        <di:waypoint xsi:type="dc:Point" x="691.0" y="400.0"/>
+        <di:waypoint xsi:type="dc:Point" x="563.0" y="400.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_ScriptTask_1" targetElement="BPMNShape_EndEvent_1">
+        <di:waypoint xsi:type="dc:Point" x="510.0" y="446.0"/>
+        <di:waypoint xsi:type="dc:Point" x="510.0" y="484.0"/>
+        <di:waypoint xsi:type="dc:Point" x="715.0" y="484.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
