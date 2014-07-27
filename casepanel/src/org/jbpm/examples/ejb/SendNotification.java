@@ -7,7 +7,7 @@ public class SendNotification {
 		return new SendNotification();
 	}
 	public static void printMessage() {
-		System.out.println("called me");
+		System.out.println("Notification Sent");
 	}
 
 }
