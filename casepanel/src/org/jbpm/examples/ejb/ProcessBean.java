@@ -66,7 +66,6 @@ public class ProcessBean extends AbstractDemoController {
 		try {
 			// start a new process instance
 			Map<String, Object> params = new HashMap<String, Object>();
-			params.put("amount", 2000);
 			ProcessInstance processInstance = ksession.startProcess(
 					"processrefundhs18", params);
 			processInstanceId = processInstance.getId();

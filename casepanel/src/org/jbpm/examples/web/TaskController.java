@@ -41,14 +41,21 @@ public class TaskController {
 	@Inject
 	FacesContext facesContext;
 
-	@Inject
-	private ProcessBean processBean;
-
 	private String comment;
 	private Map<String, Object> content;
 	private Task task;
 	private long taskId;
 	private long processId;
+
+	public long getRefundAmt() {
+		return refundAmt;
+	}
+
+	public void setRefundAmt(long refundAmt) {
+		this.refundAmt = refundAmt;
+	}
+
+	private long refundAmt;
 
 	public long getProcessId() {
 		return processId;
@@ -141,6 +148,7 @@ public class TaskController {
 		try {
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("out_comment", comment);
+			result.put("refundamount", refundAmt);
 			taskBean.approveTask(FacesContext.getCurrentInstance()
 					.getExternalContext().getRemoteUser(), taskId, result);
 			message = "The task " + taskId + " has been successfully approved.";

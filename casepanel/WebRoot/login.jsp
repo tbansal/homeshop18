@@ -1,20 +1,35 @@
 <html>
 <head>
-<title>Rewards Basic example</title>
+<title>Homeshop18 Case Panel</title>
+
+
+<link rel="stylesheet" type="text/css" href="/casepanel/style.css"></link>
 </head>
 <body>
-<p>Rewards Basic example</p>
-<p><%= request.getAttribute("message") == null ? "" : request.getAttribute("message") %></p>
+	<div id="container">
+		<div id="content">
+			<form action="j_security_check" method=post>
+				<div id="header"></div>
+				<div>
+					<table>
+						<tr>
+							<td>User Name:</td>
+							<td><input type="text" name="j_username" size="25"></td>
+						</tr>
+						<tr>
+							<td>Password</td>
+							<td><input type="password" size="15" name="j_password"></td>
+						</tr>
+						<tr>
+							<td><input type="submit" value="Submit"></td>
+							<td><input type="reset" value="Reset"></td>
+						</tr>
+					</table>
 
-This is login jsp
-<form action="j_security_check" method=post>
-    <p><strong>Please Enter Your User Name: </strong>
-    <input type="text" name="j_username" size="25">
-    <p><p><strong>Please Enter Your Password: </strong>
-    <input type="password" size="15" name="j_password">
-    <p><p>
-    <input type="submit" value="Submit">
-    <input type="reset" value="Reset">
-</form>
+				</div>
+
+			</form>
+		</div>
+	</div>
 </body>
 </html>

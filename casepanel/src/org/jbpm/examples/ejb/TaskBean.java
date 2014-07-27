@@ -67,7 +67,6 @@ public class TaskBean extends AbstractDemoController {
 		ut.begin();
 		List<TaskSummary> list;
 		try {
-			taskService.getTaskById(1);
 			list = taskService.getTasksAssignedAsPotentialOwner(actorId,
 					"en-UK");
 			ut.commit();
@@ -127,7 +126,7 @@ public class TaskBean extends AbstractDemoController {
 		ut.begin();
 		try {
 			taskService.start(taskId, actorId);
-			content.put("refundamount", 50000);
+
 			taskService.complete(taskId, actorId, content);
 			ut.commit();
 		} catch (RollbackException e) {

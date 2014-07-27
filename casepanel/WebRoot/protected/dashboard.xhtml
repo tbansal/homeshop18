@@ -18,49 +18,55 @@
 		<p:tabView>
 
 			<p:tab title="Dashboard">
-				<h:panelGrid columns="2" cellpadding="10">
+				<p:panelGrid columns="2" cellpadding="10">
 					<h:panelGroup rendered="#{empty taskController.tasks}">
 						<i>User #{request.remoteUser} has no pending cases.</i>
 					</h:panelGroup>
-					<h:dataTable id="userTasksTable" border="1"
+					<p:dataTable id="userTasksTable"
 						rendered="#{not empty taskController.tasks}"
 						value="#{taskController.tasks}" var="_item">
-						<h:column>
+						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Id" />
 							</f:facet>
 							<h:outputText id="taskId" value="#{_item.id}" />
-						</h:column>
-						<h:column>
+						</p:column>
+						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Name" />
 							</f:facet>
 							<h:outputText id="taskName" value="#{_item.name}" />
-						</h:column>
-						<h:column>
+						</p:column>
+						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Process instance ID" />
 							</f:facet>
 							<h:outputText id="processInstanceId"
 								value="#{_item.processInstanceId}" />
-						</h:column>
-						<h:column>
+						</p:column>
+						<p:column>
 							<f:facet name="header">
-								<h:outputText value="Approval" />
+								<h:outputText value="Refund Amount" />
+							</f:facet>
+							
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
 							</f:facet>
 							<h:link outcome="/protected/approveTask">
 								<f:param name="taskId" value="#{_item.id}" />
 								<f:param name="user" value="#{request.remoteUser}" />
 								<f:param name="processId" value="#{_item.processInstanceId}" />
-								<h:outputText id="approve" value="Approve" />
+								<h:outputText id="approve" value="Close Task" />
 							</h:link>
-						</h:column>
-					</h:dataTable>
-				</h:panelGrid>
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
 			</p:tab>
 			<p:tab title="Case List" closable="true">
-				<h:panelGrid columns="2" cellpadding="10">
-				</h:panelGrid>
+				<p:panelGrid columns="2" cellpadding="10">
+				</p:panelGrid>
 			</p:tab>
 		</p:tabView>
 

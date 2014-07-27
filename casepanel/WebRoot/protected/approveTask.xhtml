@@ -14,8 +14,10 @@
 	<ui:param name="pageTitle" value="Task approval" />
 
 	<ui:define name="content">
-		<h:outputText value="Approve task" />
-		<h:panelGrid columns="2">
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Approve Tasl"></h:outputText>
+			</f:facet>
 			<h:panelGroup>Task Id</h:panelGroup>
 			<h:panelGroup>#{taskController.task.id}</h:panelGroup>
 			<h:panelGroup>Created by</h:panelGroup>
@@ -24,29 +26,23 @@
 			<h:panelGroup>#{taskController.task.taskData.status}</h:panelGroup>
 			<h:panelGroup>Recipient</h:panelGroup>
 			<h:panelGroup>#{taskController.content.get("in_recipient")}</h:panelGroup>
-			<h:panelGroup>Reward</h:panelGroup>
-			<h:panelGroup>#{taskController.content.get("in_reward")}</h:panelGroup>
+			<h:panelGroup>Refund Amount</h:panelGroup>
+			<h:panelGroup><h:inputText id="refundAmt" value="#{taskController.refundAmt}" />#{taskController.content.get("refundAmount")}</h:panelGroup>
 			<h:panelGroup>
 				<h:outputLabel value="Comment" for="commentId" />
 			</h:panelGroup>
 			<h:panelGroup>
 				<h:inputText id="commentId" value="#{taskController.comment}" />
 			</h:panelGroup>
-		</h:panelGrid>
+		</p:panelGrid>
 		<h:commandButton action="#{taskController.approveTask}"
 			value="Approve" />
 		<table>
 			<tr>
 				<ui:repeat var="node" value="#{taskController.nodes}">
 					<h:panelGroup rendered="#{node.active}">
-
-
 						<td class="activeNode"></td>
 						<td class="nodes"></td>
-
-
-
-
 					</h:panelGroup>
 					<h:panelGroup rendered="#{!node.active}">
 

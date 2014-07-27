@@ -1,0 +1,51 @@
+table {
+	border-collapse: collapse;
+}
+
+.activeNode {
+	width: 30px;
+	height: 30px;
+	background-image: url("protected/images/active.png");
+	background-repeat: repeat-x;
+	background-size: 50%;
+	background-position: center;
+}
+
+.imageText {
+	display: table-cell;
+}
+
+.inActiveNode {
+	width: 30px;
+	height: 30px;
+	background-image: url("protected/images/inActive.png");
+	background-repeat: repeat-x;
+	background-size: 50%;
+	background-position: center;
+}
+
+.nodes {
+	width: 30px;
+	height: 30px;
+	background-image: url("protected/images/node.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#container {
+	width: 100%;
+}
+
+#content {
+	margin: auto;
+	width: 1000px;
+}
+
+#header {
+	height: 100px;
+	background-image: url("logo.png");
+	background-repeat: no-repeat;
+	background-position: left;
+	text-align:right;
+	width:100%;;
+}

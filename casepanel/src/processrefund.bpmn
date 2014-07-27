@@ -6,7 +6,7 @@
   <bpmn2:itemDefinition id="_hrCommentItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_amount" structureRef="Integer"/>
   <bpmn2:process id="processrefundhs18" tns:version="1.0" tns:packageName="org.jbpm.examples" tns:adHoc="false" name="Process Refund" isExecutable="true" processType="Private">
-   <extensionElements>
+      <extensionElements>
 
       <tns:import name="org.jbpm.examples.ejb.SendNotification" />
 
@@ -71,9 +71,12 @@
       <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
       <bpmn2:ioSpecification id="InputOutputSpecification_1">
         <bpmn2:dataInput id="DataInput_8" name="TaskName"/>
+        <bpmn2:dataInput id="DataInput_27" itemSubjectRef="_amount" name="refundAmount"/>
         <bpmn2:inputSet id="InputSet_1">
           <bpmn2:dataInputRefs>DataInput_8</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>DataInput_27</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
+        <bpmn2:outputSet id="OutputSet_1" name="Output Set 1"/>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation id="DataInputAssociation_8">
         <bpmn2:targetRef>DataInput_8</bpmn2:targetRef>
@@ -81,6 +84,10 @@
           <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_19">Approveamount</bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_17">DataInput_8</bpmn2:to>
         </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_27">
+        <bpmn2:sourceRef>amount</bpmn2:sourceRef>
+        <bpmn2:targetRef>DataInput_27</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:potentialOwner id="PotentialOwner_3">
         <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_3">
