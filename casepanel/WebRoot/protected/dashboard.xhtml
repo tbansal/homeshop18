@@ -60,39 +60,6 @@
 			</p:tab>
 			<p:tab title="Case List" closable="true">
 				<h:panelGrid columns="2" cellpadding="10">
-					<h:dataTable id="userTasksTable1" border="1"
-						rendered="#{not empty taskController.tasks}"
-						value="#{taskController.tasks}" var="_item">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Id" />
-							</f:facet>
-							<h:outputText id="taskId" value="#{_item.id}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Name" />
-							</f:facet>
-							<h:outputText id="taskName" value="#{_item.name}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Process instance ID" />
-							</f:facet>
-							<h:outputText id="processInstanceId"
-								value="#{_item.processInstanceId}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Approval" />
-							</f:facet>
-							<h:link outcome="/protected/approveTask">
-								<f:param name="taskId" value="#{_item.id}" />
-								<f:param name="user" value="#{request.remoteUser}" />
-								<h:outputText id="approve" value="Approve" />
-							</h:link>
-						</h:column>
-					</h:dataTable>
 				</h:panelGrid>
 			</p:tab>
 		</p:tabView>

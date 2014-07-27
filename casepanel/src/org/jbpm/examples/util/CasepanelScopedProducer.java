@@ -16,11 +16,14 @@
 
 package org.jbpm.examples.util;
 
+import org.jbpm.kie.services.api.Kjar;
+import org.jbpm.kie.services.impl.KModuleDeploymentService;
 import org.jbpm.services.task.identity.DefaultUserInfo;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.manager.RuntimeEnvironment;
 import org.kie.api.runtime.manager.RuntimeEnvironmentBuilder;
 import org.kie.api.task.UserGroupCallback;
+import org.kie.internal.deployment.DeploymentService;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.runtime.manager.cdi.qualifier.PerProcessInstance;
 import org.kie.internal.runtime.manager.cdi.qualifier.PerRequest;
@@ -28,7 +31,9 @@ import org.kie.internal.runtime.manager.cdi.qualifier.Singleton;
 import org.kie.internal.task.api.UserInfo;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
@@ -60,8 +65,11 @@ public class CasepanelScopedProducer {
                         ResourceFactory
                                 .newClassPathResource("processrefund.bpmn"),
                         ResourceType.BPMN2).get();
+        
         return environment;
     }
+    
+   
 
     @Produces
     public UserInfo produceUserInfo() {

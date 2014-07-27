@@ -6,6 +6,11 @@
   <bpmn2:itemDefinition id="_hrCommentItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_amount" structureRef="Integer"/>
   <bpmn2:process id="processrefundhs18" tns:version="1.0" tns:packageName="org.jbpm.examples" tns:adHoc="false" name="Process Refund" isExecutable="true" processType="Private">
+   <extensionElements>
+
+      <tns:import name="org.jbpm.examples.ejb.SendNotification" />
+
+    </extensionElements>
     <bpmn2:property id="recipient" itemSubjectRef="_recipientItem"/>
     <bpmn2:property id="reward" itemSubjectRef="_rewardItem"/>
     <bpmn2:property id="pmComment" itemSubjectRef="_pmCommentItem"/>
@@ -25,6 +30,11 @@
       </bpmn2:potentialOwner>
     </bpmn2:userTask>
     <bpmn2:userTask id="_D601DEF2-307C-472A-84F7-6AB28FEE806F" name="Arrange Refund">
+      <bpmn2:extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>SendNotification.getInstance().printMessage();</tns:script>
+        </tns:onEntry-script>
+      </bpmn2:extensionElements>
       <bpmn2:incoming>_1B8DCDC4-A0A5-44ED-8989-160EF4076E22-_D601DEF2-307C-472A-84F7-6AB28FEE806F</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
       <bpmn2:ioSpecification id="InputOutputSpecification_4">

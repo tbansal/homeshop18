@@ -126,13 +126,13 @@ public class TaskController {
 		}
 	}
 
-	private Node[] nodes;
+	private List<Activities> nodes;
 
-	public Node[] getNodes() {
+	public List<Activities> getNodes() {
 		return nodes;
 	}
 
-	public void setNodes(Node[] nodes) {
+	public void setNodes(List<Activities> nodes) {
 		this.nodes = nodes;
 	}
 

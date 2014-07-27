@@ -6,6 +6,44 @@
 <h:head>
 	<title>${artifactId}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<style>
+<!--
+-->
+table {
+	border-collapse: collapse;
+}
+
+.activeNode {
+	width: 30px;
+	height: 30px;
+	background-image: url("images/active.png");
+	background-repeat: repeat-x;
+	background-size: 50%;
+	background-position: center;
+}
+
+.imageText {
+	display: table-cell;
+}
+
+.inActiveNode {
+	width: 30px;
+	height: 30px;
+	background-image: url("images/inActive.png");
+	background-repeat: repeat-x;
+	background-size: 50%;
+	background-position: center;
+}
+
+.nodes {
+	width: 30px;
+	height: 30px;
+	background-image: url("images/node.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 </h:head>
 <h:body>
 

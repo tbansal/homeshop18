@@ -27,18 +27,15 @@ import javax.inject.Inject;
 import javax.transaction.Status;
 import javax.transaction.UserTransaction;
 
-import org.kie.api.definition.process.Node;
 import org.kie.api.runtime.KieSession;
-import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.api.runtime.manager.RuntimeManager;
 import org.kie.api.runtime.process.ProcessInstance;
 import org.kie.internal.runtime.manager.cdi.qualifier.Singleton;
-import org.kie.internal.runtime.manager.context.EmptyContext;
 
 @javax.ejb.Startup
 @javax.ejb.Singleton
 @TransactionManagement(TransactionManagementType.BEAN)
-public class ProcessBean {
+public class ProcessBean extends AbstractDemoController {
 
 	@Resource
 	private UserTransaction ut;
@@ -46,7 +43,6 @@ public class ProcessBean {
 	public RuntimeManager getSingletonManager() {
 		return singletonManager;
 	}
-
 
 	@Inject
 	@Singleton
@@ -59,12 +55,12 @@ public class ProcessBean {
 		// otherwise after server restart complete task won't move process
 		// forward
 		singletonManager.toString();
+		kieManager.deployUnit();
 	}
 
 	public long startProcess(String recipient, int reward) throws Exception {
-		RuntimeEngine runtime = singletonManager.getRuntimeEngine(EmptyContext
-				.get());
-		KieSession ksession = runtime.getKieSession();
+
+		KieSession ksession = extractKieSession();
 		long processInstanceId = -1;
 		ut.begin();
 		try {
@@ -74,7 +70,7 @@ public class ProcessBean {
 			ProcessInstance processInstance = ksession.startProcess(
 					"processrefundhs18", params);
 			processInstanceId = processInstance.getId();
-			
+
 			System.out.println("Process Started");
 			ut.commit();
 		} catch (Exception e) {
@@ -85,9 +81,5 @@ public class ProcessBean {
 		}
 		return processInstanceId;
 	}
-	
-	
-	
-	
 
 }
