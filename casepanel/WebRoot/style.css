@@ -3,11 +3,9 @@ table {
 }
 
 .activeNode {
-	width: 30px;
 	height: 30px;
 	background-image: url("protected/images/active.png");
 	background-repeat: repeat-x;
-	background-size: 50%;
 	background-position: center;
 }
 
@@ -16,18 +14,16 @@ table {
 }
 
 .inActiveNode {
-	width: 30px;
 	height: 30px;
-	background-image: url("protected/images/inActive.png");
+	background-image: url("protected/images/inactive.png");
 	background-repeat: repeat-x;
-	background-size: 50%;
 	background-position: center;
 }
 
 .nodes {
 	width: 30px;
 	height: 30px;
-	background-image: url("protected/images/node.png");
+	background-image: url("protected/images/nodes.png");
 	background-repeat: no-repeat;
 	background-position: center;
 }

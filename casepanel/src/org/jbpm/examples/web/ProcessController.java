@@ -52,9 +52,9 @@ public class ProcessController {
         String message;
         try {
             long processInstanceId = processBean.startProcess("parthog", reward);
-            message = "Process instance " + processInstanceId + " has been successfully started." ;
+            message = "Case id " + processInstanceId + " has been successfully registered." ;
         } catch (Exception e) {
-            message = "Unable to start the business process.";
+            message = "Unable to register the case.";
         }
         facesContext.getExternalContext().getFlash()
                 .put("msg", message);

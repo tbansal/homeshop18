@@ -151,7 +151,7 @@ public class TaskController {
 			result.put("refundamount", refundAmt);
 			taskBean.approveTask(FacesContext.getCurrentInstance()
 					.getExternalContext().getRemoteUser(), taskId, result);
-			message = "The task " + taskId + " has been successfully approved.";
+			message = "The task " + taskId + " has been successfully ccompleted.";
 
 		} catch (Exception e) {
 			message = "Unable to approve the task " + taskId + ".";

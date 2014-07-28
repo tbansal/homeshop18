@@ -14,7 +14,7 @@
 	<ui:param name="pageTitle" value="My Tasks" />
 	<ui:define name="content">
 		<h:commandButton action="#{processController.startProcess}"
-			value="Start Process" rendered="#{request.isUserInRole('frontdesk')}" />
+			value="Register Case" rendered="#{request.isUserInRole('frontdesk')}" />
 		<p:tabView>
 
 			<p:tab title="Dashboard">
@@ -39,7 +39,7 @@
 						</p:column>
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="Process instance ID" />
+								<h:outputText value="Case ID" />
 							</f:facet>
 							<h:outputText id="processInstanceId"
 								value="#{_item.processInstanceId}" />
